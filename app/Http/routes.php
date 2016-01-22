@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
+Route::group([
+        'namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => [
+            'auth.basic',
+            'auth.admin'
+        ]
+], function() {
+
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
